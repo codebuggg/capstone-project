@@ -1,0 +1,189 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a simple crud app",
+        "version": "1.0.0",
+        "title": "Movies API"
+    },
+    "schemes": ["http"],
+    "host": "localhost:8000",
+    "basePath": "/api",
+    "paths" : {
+        "/" : {
+            "get" : {
+                "summary" : "fetch home",
+                "description": "fetch home",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "headers",
+                        "name": "Authorization",
+                        "description": "Bearer token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ProductResponse"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            }
+        },
+        "/login" : {
+            "post" : {
+                "summary" : "Log in",
+                "description": "Log in",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "email",
+                        "description": "email of user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "password",
+                        "description": "password of user",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "schema": {
+                            "$ref": "#/definitions/UserResponse"
+                        },
+                        "headers": {
+                            "Authorization": {
+                                "description": "Bearer Token",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid login credentials",
+                        "schema": {
+                            "$ref": "#/definitions/InvalidLoginResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/sign_up" : {
+            "post" : {
+                "summary" : "Sign up",
+                "description": "Sign up",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "email",
+                        "description": "email of user",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "password",
+                        "description": "password of user",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sign up successful",
+                        "schema": {
+                            "$ref": "#/definitions/UserResponse"
+                        },
+                        "headers": {
+                            "Authorization": {
+                                "description": "Bearer Token",
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user" : {
+            "get" : {
+                "summary" : "fetch user",
+                "description": "fetch user",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "headers",
+                        "name": "Authorization",
+                        "description": "Bearer token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/UserResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            }
+        }
+    }, 
+    "definitions": {
+        "UserResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                     "type": "integer"
+                },
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
+        "ProductResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                     "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "InvalidLoginResponse": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+
+        }
+    }
+}
