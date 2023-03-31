@@ -3,5 +3,9 @@
         [
             "@babel/preset-env",
         ]
+    ],
+    "ignore": [
+        "node_modules",
+        "app.yaml"
     ]
 }

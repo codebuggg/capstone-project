@@ -12,7 +12,7 @@ const {
     products: Product,
 } = db.sequelize.models;
 
-const port = 8000;
+const port = process.env.PORT | 8000;
 
 const app = express();
 app.use(express.json());

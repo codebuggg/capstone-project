@@ -1,5 +1,5 @@
-runtime: nodejs10
-service: default
+runtime: nodejs16
+env: standard
 handlers:
     # Serve all static files with urls ending with a file extension
     - url: /(.*\..+)$
