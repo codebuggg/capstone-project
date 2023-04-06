@@ -1,1 +1,1 @@
-export const HOST = "http://localhost:8000/api";
+export const HOST = "https://api-dot-capstone-382315.uc.r.appspot.com/api";

@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import bcrypt from "bcrypt";
 import { expressjwt } from "express-jwt";
-import db from "./models";
+import db from "../models";
 import { setToken, signToken, KEY } from "./helpers";
 import swaggerDocument from "../swagger.json";
 import swaggerUi from "swagger-ui-express";
