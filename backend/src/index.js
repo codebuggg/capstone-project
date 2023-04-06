@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import { expressjwt } from "express-jwt";
 import db from "./models";
 import { setToken, signToken, KEY } from "./helpers";
-import swaggerDocument from "./swagger.json";
+import swaggerDocument from "../swagger.json";
 import swaggerUi from "swagger-ui-express";
 
 const {
@@ -12,7 +12,7 @@ const {
     products: Product,
 } = db.sequelize.models;
 
-const port = process.env.PORT | 8000;
+const port = process.env.PORT || 8000;
 
 const app = express();
 app.use(express.json());
@@ -81,6 +81,9 @@ app.post("/api/sign_up", async (req, res) => {
         setToken(res, token);
         res.send(user);
     }
-})
+});
 
-app.listen(port, () => console.log(`Server running at ${port}`));
+
+app.listen(port, () => {
+    console.log(`Running on ${port}`);
+})
